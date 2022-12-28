@@ -1,15 +1,17 @@
 import random
+import time
 
-u=(1,2,3)
-print('''じゃんけんゲーム　スタート！"
+print("じゃんけんゲーム　スタート！")
 
-グー=0, チョキ=1, パー=2''')
+time.sleep(1)
+
+janken_list = ["グー","チョキ","パー"]
+print("グー=0, チョキ=1, パー=2")
 u = int(input("0.1.2の中から選ぼう！"))
-print(f"君は{u}を選んだよ")
+print(f"君は{janken_list}を選んだよ")
 
-for n in range(1):
-      c = random.randrange(0,2)
-      print(f"コンピューターは{c}を選んだよ")
+c = random.randrange(0,2)
+print(f"コンピューターは{c}を選んだよ")
 
 i = (u-c) % 3
 
@@ -20,4 +22,4 @@ elif i ==2:
       print("あなたの勝ち！")
 
 else:
-      print("あなたの負け")
+      print("あいこ\nもう1戦！")
