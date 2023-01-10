@@ -2,34 +2,52 @@ import random
 import time
 
 WAIT_TIME = 1
-JANKEN_LISTS = {"グー": 0, "チョキ": 1, "パー": 2}
+JANKEN_LISTS = {0: "グー", 1: "チョキ", 2: "パー"}
+WIN = 0
+DRAW = 0
+LOSE = 0
 
-for HANDS in JANKEN_LISTS.items()
-
-print("じゃんけんゲーム　スタート！")
-
-time.sleep(WAIT_TIME)
-print(JANKEN_LISTS)
-print("グー=0", "チョキ=1", "パー=2")
-USER_HAND = int(input("0.1.2の中から選ぼう！"))
-print(f"君は{JANKEN_LISTS[USER_HAND]}を選んだよ")
+print("""
+じゃんけんゲーム　スタート！
+3回勝負だよ！
+""")
 
 time.sleep(WAIT_TIME)
 
-COMPUTER_HANDS = random.randrange(0, 2)
-print(f"コンピューターは{JANKEN_LISTS[COMPUTER_HANDS]}を選んだよ")
+while True:
+    print(JANKEN_LISTS)
+    USER_HAND = int(input("0.1.2の中から選ぼう！"))
+    print(f"君は{JANKEN_LISTS[USER_HAND]}を選んだよ")
 
-time.sleep(WAIT_TIME)
+    time.sleep(WAIT_TIME)
 
-result = (USER_HAND - COMPUTER_HANDS) % 3
-WIN = int(2)
-ROSE = int(1)
+    COMPUTER_HANDS = random.randrange(0, 2)
+    print(f"コンピューターは{JANKEN_LISTS[COMPUTER_HANDS]}を選んだよ")
 
-if result == WIN:
-    print("あなたの勝ち！")
+    time.sleep(WAIT_TIME)
 
-elif result == ROSE:
-    print("あなたの負け。\nもう一1戦!")
+    result = (USER_HAND - COMPUTER_HANDS) % 3
 
-else:
-    print("あいこ\nもう1戦！")
+    if result == 2:
+        WIN = WIN + 1
+
+    elif result == 1:
+        LOSE = LOSE + 1
+
+    else:
+        DRAW = DRAW + 1
+
+    print(f"{WIN}勝　{LOSE}敗　{DRAW}引き分け")
+
+    if WIN == 3:
+        print("あなたの勝ち！おめでとう！")
+        break
+
+    elif LOSE == 3:
+        print("あなたの負け。")
+        break
+
+    elif DRAW == 3:
+        print("引き分け")
+        break
+
